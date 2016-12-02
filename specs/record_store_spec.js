@@ -20,13 +20,34 @@ describe('RecordStore', function() {
   });
 
   it('should be able to add a record to the inventory', function() {
-    ricksRecords.addRecord(recordStub);
+    ricksRecords.buyRecord(recordStub);
     assert.equal(1, ricksRecords.inventoryCount());
   });
 
-  it('should decrease Record Store balance by record cost price', function() {
-    ricksRecords.addRecord(recordStub);
+  it('should decrease Record Store balance by record cost price when record brought', function() {
+    ricksRecords.buyRecord(recordStub, 5);
     assert.equal(1485, ricksRecords.balance);
+  });
+
+  it('should add quantity of brought records to the record store quantity available', function() {
+    ricksRecords.buyRecord(recordStub, 5);
+    assert.equal(10, recordStub.quantity);
   })
+
+  it('should be able to find record by title', function() {
+    ricksRecords.buyRecord(recordStub, 1);
+    assert.equal(recordStub, ricksRecords.findRecordByTitle('Parklife'));
+  })  
+
+  it("should return 'record not found' for a record not in stock", function() {
+    ricksRecords.buyRecord(recordStub, 1);
+    assert.equal("record not found", ricksRecords.findRecordByTitle('Definately Maybe'));
+  })
+
+  // it('should be able to sell a record', function() {
+  //   ricksRecords.sellRecord(recordStub, 1);
+  //   assert.equal(1508.99, ricksRecords.balance);
+  //   assert.equal(4, recordStub.quantity);
+  // })
 
 });
