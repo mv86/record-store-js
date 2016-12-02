@@ -9,8 +9,10 @@ RecordStore.prototype = {
   inventoryCount: function() {
     return this.inventory.length;
   },
-  buyRecord: function(record, quantity) {
+  addRecord: function(record) {
     this.inventory.push(record);
+  },
+  buyStock: function(record, quantity) {
     this.balance -= (record.buyPrice * quantity);
     record.quantity += quantity;
   },
@@ -24,7 +26,7 @@ RecordStore.prototype = {
       return foundRecord;
     }
   },
-  sellRecord: function(record, quantity) {
+  sellStock: function(record, quantity) {
       this.balance += (record.sellPrice * quantity);
       record.quantity -= quantity;
   }
