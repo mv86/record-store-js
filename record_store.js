@@ -8,6 +8,10 @@ var RecordStore = function(name, city, balance) {
 RecordStore.prototype = {
   inventoryCount: function() {
     return this.inventory.length;
+  },
+  addRecord: function(record) {
+    this.inventory.push(record);
+    this.balance -= (record.buy_price * record.quantity);
   }
 }
 
