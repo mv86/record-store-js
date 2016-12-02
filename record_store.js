@@ -11,7 +11,7 @@ RecordStore.prototype = {
   },
   buyRecord: function(record, quantity) {
     this.inventory.push(record);
-    this.balance -= (record.buy_price * quantity);
+    this.balance -= (record.buyPrice * quantity);
     record.quantity += quantity;
   },
   findRecordByTitle: function(title) {
@@ -23,15 +23,11 @@ RecordStore.prototype = {
     } else {
       return foundRecord;
     }
+  },
+  sellRecord: function(record, quantity) {
+      this.balance += (record.sellPrice * quantity);
+      record.quantity -= quantity;
   }
-
-
-  // sellRecord: function(record, quantity) {
-  //   this.inventory.some(function(name === record.name) {
-
-  //   }); 
-
-  // }
-}
+};
 
 module.exports = RecordStore;

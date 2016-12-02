@@ -5,7 +5,7 @@ describe('RecordStore', function() {
 
   beforeEach(function() {
   ricksRecords = new RecordStore('Ricks Records', 'London', 1500);
-  recordStub = {artist: 'Blur', title: 'Parklife', buy_price: 3, sell_price: 8.99, quantity: 5}
+  recordStub = {artist: 'Blur', title: 'Parklife', buyPrice: 3, sellPrice: 8.99, quantity: 0}
   });
 
 
@@ -20,7 +20,7 @@ describe('RecordStore', function() {
   });
 
   it('should be able to add a record to the inventory', function() {
-    ricksRecords.buyRecord(recordStub);
+    ricksRecords.buyRecord(recordStub, 5);
     assert.equal(1, ricksRecords.inventoryCount());
   });
 
@@ -31,23 +31,24 @@ describe('RecordStore', function() {
 
   it('should add quantity of brought records to the record store quantity available', function() {
     ricksRecords.buyRecord(recordStub, 5);
-    assert.equal(10, recordStub.quantity);
+    assert.equal(5, recordStub.quantity);
   })
 
   it('should be able to find record by title', function() {
-    ricksRecords.buyRecord(recordStub, 1);
+    ricksRecords.buyRecord(recordStub);
     assert.equal(recordStub, ricksRecords.findRecordByTitle('Parklife'));
   })  
 
   it("should return 'record not found' for a record not in stock", function() {
-    ricksRecords.buyRecord(recordStub, 1);
+    ricksRecords.buyRecord(recordStub, 5);
     assert.equal("record not found", ricksRecords.findRecordByTitle('Definately Maybe'));
   })
 
-  // it('should be able to sell a record', function() {
-  //   ricksRecords.sellRecord(recordStub, 1);
-  //   assert.equal(1508.99, ricksRecords.balance);
-  //   assert.equal(4, recordStub.quantity);
-  // })
+  it('should be able to sell a record', function() {
+    ricksRecords.buyRecord(recordStub, 5);
+    ricksRecords.sellRecord(recordStub, 1);
+    assert.equal(1493.99, ricksRecords.balance);
+    assert.equal(4, recordStub.quantity);
+  })
 
 });
