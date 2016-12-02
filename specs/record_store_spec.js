@@ -6,6 +6,7 @@ describe('RecordStore', function() {
   beforeEach(function() {
   ricksRecords = new RecordStore('Ricks Records', 'London', 1500);
   recordStub = {artist: 'Blur', title: 'Parklife', buyPrice: 3, sellPrice: 8.99, quantity: 0}
+  recordStub2 = {artist: 'Blur', title: 'Blur', buyPrice: 4, sellPrice: 9.99, quantity: 0}
   });
 
 
@@ -24,27 +25,35 @@ describe('RecordStore', function() {
     assert.equal(1, ricksRecords.inventoryCount());
   });
 
+  it('should be able to delete a record from the inventory', function() {
+    ricksRecords.addRecord(recordStub);
+    ricksRecords.addRecord(recordStub2);
+    ricksRecords.deleteRecord(recordStub);
+    assert.equal(1, ricksRecords.inventoryCount());
+    assert.equal('Blur', ricksRecords.inventory[0].title);
+  })
+
   it('should be able to buy stock and add to inventory, updating quantity available', function() {
     ricksRecords.buyStock(recordStub, 5);
     assert.equal(1485, ricksRecords.balance);
     assert.equal(5, recordStub.quantity);
   });
 
-  it('should be able to find record by title', function() {
-    ricksRecords.addRecord(recordStub);
-    assert.equal(recordStub, ricksRecords.findRecordByTitle('Parklife'));
-  })  
-
-  it("should return 'record not found' for a record not in stock", function() {
-    ricksRecords.buyStock(recordStub, 5);
-    assert.equal("record not found", ricksRecords.findRecordByTitle('Definately Maybe'));
-  })
-
   it('should be able to sell stock', function() {
     ricksRecords.buyStock(recordStub, 5);
     ricksRecords.sellStock(recordStub, 1);
     assert.equal(1493.99, ricksRecords.balance);
     assert.equal(4, recordStub.quantity);
-  })
+  });
+
+  it('should be able to find record by title', function() {
+    ricksRecords.addRecord(recordStub);
+    assert.equal(recordStub, ricksRecords.findRecordByTitle('Parklife'));
+  }); 
+
+  it("should return 'record not found' for a record not in stock", function() {
+    ricksRecords.buyStock(recordStub, 5);
+    assert.equal("record not found", ricksRecords.findRecordByTitle('Definately Maybe'));
+  });
 
 });

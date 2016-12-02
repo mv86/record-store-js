@@ -12,9 +12,21 @@ RecordStore.prototype = {
   addRecord: function(record) {
     this.inventory.push(record);
   },
+  deleteRecord: function(record) {
+    for (item of this.inventory) {
+      if (item.artist === record.artist && item.title === record.title) {
+        var itemIndex = this.inventory.indexOf(item);
+      }
+      this.inventory.splice(itemIndex, 1);
+    }
+  },
   buyStock: function(record, quantity) {
     this.balance -= (record.buyPrice * quantity);
     record.quantity += quantity;
+  },
+  sellStock: function(record, quantity) {
+      this.balance += (record.sellPrice * quantity);
+      record.quantity -= quantity;
   },
   findRecordByTitle: function(title) {
     var foundRecord = this.inventory.find(function(record) {
@@ -25,10 +37,6 @@ RecordStore.prototype = {
     } else {
       return foundRecord;
     }
-  },
-  sellStock: function(record, quantity) {
-      this.balance += (record.sellPrice * quantity);
-      record.quantity -= quantity;
   }
 };
 
