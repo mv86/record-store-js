@@ -37,7 +37,18 @@ RecordStore.prototype = {
     } else {
       return foundRecord;
     }
+  },
+  sortStockByQuantity: function() {
+    this.inventory.sort(function(record1, record2) {
+      return record1.quantity - record2.quantity;
+    });
   }
+  // listInventory: function() {
+
+  //   this.inventory.forEach(function(inventory) {
+  //     con
+  //   })
+  // }
 };
 
 module.exports = RecordStore;
