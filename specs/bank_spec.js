@@ -10,4 +10,14 @@ describe('Bank', function() {
     assert.equal(10000, bank.lendingAmount);
   });
 
+  it('can loan money', function() {
+    bank.loanMoney(1000);
+    assert.equal(9000, bank.lendingAmount);
+  })
+
+  it("can't loan more than lending amount", function() {
+    bank.loanMoney(12000);
+    assert.equal(9000, bank.lendingAmount);
+  })
+
 })
