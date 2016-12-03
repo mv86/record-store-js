@@ -8,10 +8,19 @@ Bank.prototype = {
     if (amount <= this.lendingAmount) {
       this.lendingAmount -= amount;
     } else if (this.lendingAmount > 0) {
-      console.log("I'm sorry, we do not have that amount to lend. We have " + this.lendingAmount + " available. Would you like that instead?")
+      return this.notEnoughToLend;
     } else {
-      console.log("I'm sorry, we currently have no money to lend.")
+      return this.noFundsAvailable;
     };
+  },
+  receivePayment: function(amount) {
+    this.lendingAmount += amount;
+  },
+  notEnoughToLend: function() {
+    "I'm sorry, we do not have that amount to lend. We have " + this.lendingAmount + " available. Would you like that instead?";
+  },
+  notEnoughToLend: function() { 
+    "I'm sorry, we currently have no money to lend.";
   }
 }
 

@@ -13,11 +13,16 @@ describe('Bank', function() {
   it('can loan money', function() {
     bank.loanMoney(1000);
     assert.equal(9000, bank.lendingAmount);
-  })
+  });
 
   it("can't loan more than lending amount", function() {
     bank.loanMoney(12000);
     assert.equal(9000, bank.lendingAmount);
+  });
+
+  it("can recieve loan payments", function() {
+    bank.receivePayment(3000);
+    assert.equal(12000, bank.lendingAmount);
   })
 
 })
