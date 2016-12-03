@@ -52,7 +52,6 @@ describe('RecordStore', function() {
   });
 
   it('should be able to find record by title', function() {
-    ricksRecords.addRecord(recordStub);
     assert.equal(recordStub, ricksRecords.findRecordByTitle('Parklife'));
   }); 
 
@@ -66,8 +65,8 @@ describe('RecordStore', function() {
     assert.equal(recordStub3, ricksRecords.inventory[0]);
   });
 
-  // // it("should list the inventory onto the terminal", function() {
-  // //   assert.equal({})
-  // // })
+  it("should list the inventory onto the terminal", function() {
+    assert.equal(undefined, ricksRecords.listInventory());
+  });
 
 });
