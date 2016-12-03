@@ -69,4 +69,8 @@ describe('RecordStore', function() {
     assert.equal(undefined, ricksRecords.listInventory());
   });
 
+  it('should be able to give profit available in stock', function() {
+   assert.equal(76.87, ricksRecords.stockProfitAvailable()); 
+  });
+
 });

@@ -48,6 +48,15 @@ RecordStore.prototype = {
     this.inventory.forEach(function(inventory) {
       console.log("You have " + inventory.quantity + " copies of " + inventory.title + " by " + inventory.artist + ".")
     });
+  },
+  stockProfitAvailable: function() {
+    totalBuyPrice = this.inventory.reduce(function(sum, record) {
+      return sum += (record.buyPrice * record.quantity);
+    }, 0);
+    totalSellPrice = this.inventory.reduce(function(sum, record) {
+      return sum += (record.sellPrice * record.quantity);
+    }, 0);
+    return totalSellPrice - totalBuyPrice;
   }
 };
 
