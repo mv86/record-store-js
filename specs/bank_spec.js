@@ -3,7 +3,8 @@ var Bank = require('../bank');
 
 describe('Bank', function() {
 
-  bank = new Bank('Barclays', 10000)
+  bank = new Bank('Barclays', 10000);
+  accountHolderStub = {accountName: 'Mr Rich', balance: 15000};
 
   it('can be constructed', function() {
     assert.equal('Barclays', bank.name);
@@ -11,18 +12,20 @@ describe('Bank', function() {
   });
 
   it('can loan money', function() {
-    bank.loanMoney(1000);
+    bank.loanMoney(accountHolderStub, 1000);
     assert.equal(9000, bank.lendingAmount);
+    assert.equal(16000, accountHolderStub.balance);
   });
 
   it("can't loan more than lending amount", function() {
-    bank.loanMoney(12000);
+    bank.loanMoney(accountHolderStub, 12000);
     assert.equal(9000, bank.lendingAmount);
   });
 
   it("can recieve loan payments", function() {
-    bank.receivePayment(3000);
+    bank.receivePayment(accountHolderStub, 3000);
     assert.equal(12000, bank.lendingAmount);
-  })
+    assert.equal(13000, accountHolderStub.balance);
+  });
 
 })
