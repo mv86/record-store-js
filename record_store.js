@@ -13,7 +13,7 @@ RecordStore.prototype = {
     this.inventory.push(record);
   },
   deleteRecord: function(record) {
-    for (item of this.inventory) {
+    for (var item of this.inventory) {
       if (item.artist === record.artist && item.title === record.title) {
         var itemIndex = this.inventory.indexOf(item);
       }
