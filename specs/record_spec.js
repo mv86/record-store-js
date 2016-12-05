@@ -3,7 +3,7 @@ var Record = require('../record');
 
 describe('Records', function() {
 
-  record1 = new Record('Blur', 'Parklife', 3.00, 8.99, 5);
+  var record1 = new Record('Blur', 'Parklife', 3.00, 8.99, 5);
 
   it('can be constructed', function() {
     assert.equal('Blur', record1.artist)

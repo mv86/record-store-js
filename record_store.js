@@ -32,10 +32,10 @@ RecordStore.prototype = {
     var foundRecord = this.inventory.find(function(record) {
       return record.title === title;
     });
-    if (foundRecord === undefined) {
-      return "record not found";
-    } else {
+    if (foundRecord) {
       return foundRecord;
+      } else {
+      return "record not found";
     }
   },
   sortStockByQuantity: function() {

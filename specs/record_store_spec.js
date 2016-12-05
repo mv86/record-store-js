@@ -3,10 +3,10 @@ var RecordStore = require('../record_store');
 
 describe('RecordStore', function() {
 
-  ricksRecords = new RecordStore('Ricks Records', 'London', 1500);
-  recordStub = {artist: 'Blur', title: 'Parklife', buyPrice: 3, sellPrice: 8.99, quantity: 0}
-  recordStub2 = {artist: 'Blur', title: 'Blur', buyPrice: 4, sellPrice: 9.99, quantity: 7}
-  recordStub3 = {artist: 'Pulp', title: 'Different Class', buyPrice: 6, sellPrice: 11.49, quantity: 2}
+  var ricksRecords = new RecordStore('Ricks Records', 'London', 1500);
+  var recordStub = {artist: 'Blur', title: 'Parklife', buyPrice: 3, sellPrice: 8.99, quantity: 0}
+  var recordStub2 = {artist: 'Blur', title: 'Blur', buyPrice: 4, sellPrice: 9.99, quantity: 7}
+  var recordStub3 = {artist: 'Pulp', title: 'Different Class', buyPrice: 6, sellPrice: 11.49, quantity: 2}
 
 
   it('can be constructed', function() {

@@ -3,8 +3,8 @@ var Bank = require('../bank');
 
 describe('Bank', function() {
 
-  bank = new Bank('Barclays', 10000);
-  accountHolderStub = {accountName: 'Mr Rich', balance: 15000};
+  var bank = new Bank('Barclays', 10000);
+  var accountHolderStub = {accountName: 'Mr Rich', balance: 15000};
 
   it('can be constructed', function() {
     assert.equal('Barclays', bank.name);
